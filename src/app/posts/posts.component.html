@@ -1,0 +1,143 @@
+<div class="principale">
+
+<div>
+ <!--ajouter un post  -->
+ <div class="container mt-2 mb-2" style="margin-bottom: 15px;" >
+    <div class="row d-flex align-items-center justify-content-center">
+        <div class="col-md-10" style="border-radius: 50px ;">
+            <div class="card">
+                <div class="d-flex justify-content-between p-2 px-3">
+                    <div class="d-flex flex-row align-items-center"> <img src="https://i.imgur.com/UXdKE3o.jpg" width="50" class="rounded-circle">
+                        <div class="d-flex flex-column ml-2"> <input class="btnQuoiDeNeuf" readonly type="btn btn primary" routerLink="makePoster" value="Quoi de neuf ?" > </div>
+                    </div>
+                    
+                </div> 
+                <div class="p-2">
+                    <hr>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div id ="ajouterPost" class="d-flex flex-row icons d-flex align-items-center">
+                             <a routerLink="makePoster"><span><i class="fa fa-camera "></i>Photo/vidéo</span></a>   </div>
+                      
+                    </div>
+                    <hr>
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+               
+
+
+    <div
+        class="search-results"
+        infiniteScroll
+        [infiniteScrollDistance]="2"
+        [infiniteScrollThrottle]="50"
+        (scrolled)="onScroll()"
+        >
+        
+       
+    <div  *ngFor="let post of posts">
+
+        <div class="container mt-2 mb-2" style="margin-bottom: 15px;" >
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="col-md-10" style="border-radius: 50px ;">
+                    <div class="card" >
+                        <div class="d-flex justify-content-between p-2 px-3">
+                            <div class="d-flex flex-row align-items-center"> <img src={{post.user.imageProfil}} width="50" class="rounded-circle">
+                                <div class="d-flex flex-column ml-2" style="margin-right: 5px;"> <span class="font-weight-bold">{{post.user.nom}}</span> <small class="text-primary">{{post.user.nomUtilisateur}}</small> </div>
+                            </div>
+                            <div class="d-flex flex-row mt-1 ellipsis" *ngIf="post.dateDePost"> <small class="mr-2" style="padding-right: 5px;">{{post.dateDePost | calculeTime}} </small> <i class="fa fa-ellipsis-h ml-2"></i> </div>
+                        </div> 
+
+                    
+                            <img  *ngIf="post.typeMedia2 === 'image'" src={{post.media}} class="img-fluid">
+                        
+                        
+                       
+                         <video *ngIf="post.typeMedia2 === 'video'"controls>
+                             <source src={{post.media}} > 
+                         </video>
+                          
+                        
+                        <div class="p-2">
+                            <p class="text-justify">{{post.contenu}}</p>
+                            <hr>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex flex-row icons d-flex align-items-center"> <i class="fa fa-heart"></i> <i class="fa fa-smile-o ml-2"></i> </div>
+                                <div *ngIf="post.comment.length != 0">
+                                     <div id="showComment" (click)="showComment()" class="d-flex flex-row muted-color"> <span >{{post.comment.length}} comments</span> </div>
+                                </div>
+                                <div *ngIf="post.comment.length == 0">
+                                    <div class="d-flex flex-row muted-color"> <span >{{post.comment.length}} comments</span> </div>
+                                </div>
+                               
+                            </div>
+                            <hr>
+
+                            <div *ngIf="showCommentaire" >
+                                    
+                                        <div *ngFor="let com of post.comment" class="comments">
+                                        <div class="d-flex flex-row mb-2"> <img src={{com.user.imageProfil}} width="40" class="rounded-image">
+                                            <div class="d-flex flex-column ml-2"> <span class="name">{{com.user.nom}}</span> <small class="comment-text">{{com.user.commentUser.message}}</small>
+                                                <div class="d-flex flex-row align-items-center status"> <small>Like</small> <small>Reply</small> <small>Translate</small> <small>18 mins</small> </div>
+                                            </div>
+                                        </div>
+                                    <!--   <div class="d-flex flex-row mb-2"> <img src="https://i.imgur.com/1YrCKa1.jpg" width="40" class="rounded-image">
+                                            <div class="d-flex flex-column ml-2"> <span class="name">Elizabeth goodmen</span> <small class="comment-text">Thanks for sharing!</small>
+                                                <div class="d-flex flex-row align-items-center status"> <small>Like</small> <small>Reply</small> <small>Translate</small> <small>8 mins</small> </div>
+                                            </div>
+                                        </div> -->
+                                        
+                                        </div>
+
+                             </div>
+                                   
+                            
+                       
+                        </div>
+                        <div class="comment-input"> <input type="text" class="form-control">
+                                    <div class="fonts"> <i class="fa fa-camera"></i> </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    
+     
+    
+</div>
+
+
+
+ 
+</div>
+   
+  <!--  spinner -->
+   <ngx-spinner 
+    bdColor = "rgba(0, 0, 0, 0.8)"
+   Color = "" 
+   size = "default" 
+   type = "ball-pulse-sync"
+    [fullScreen] = "true">
+    <p style="color: white">Loading...</p>
+    </ngx-spinner>
+
+    <div *ngIf="!notEmptyPost" class="row pb-5">
+        <div class="col-md-12 d-flex justify-content-center">
+            <div class="text-muted h6 alert alert-secondary p-2">
+                No more items to show
+            </div>
+
+        </div>
+      
+
+    </div>
+
+    </div>
+

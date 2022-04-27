@@ -1,0 +1,28 @@
+
+
+<body>
+    <div class="body1">
+        <div class="scroll-page">
+            <img src={{session.decodedToken}} alt="">
+        </div>
+    <ul *ngIf="session.isLogged" style="list-style-type:none; ">
+        <li>
+       {{session.decodedToken.username}}
+        </li>
+        <li> {{session.decodedToken.roles[0]}}</li>
+        <li>Date de création</li>
+        <li>Role</li>
+    </ul>
+    </div>
+    <div class="body2">
+        <h5>Info-2</h5>
+        <ul>
+            <li>image</li>
+            <li>Nom</li>
+            <li>Date de création</li>
+            <li>Role</li>
+        </ul>
+    </div>
+ 
+</body>
+

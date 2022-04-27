@@ -1,0 +1,17 @@
+
+<body>
+    <h5>Ami.e.s</h5>
+    <div class="scroll-container">
+            <ul *ngFor="let user of users;">
+                <li  style="list-style-type:none; display: flex; justify-content: space-between;">
+                    <div class="scroll-page">
+                        <img src={{user.imageProfil}} alt="">{{user.nom}}
+                    </div>
+                    <div class="supprimer">
+                        <i class="fa fa-trash "></i>
+                    </div> 
+                </li>
+            </ul>
+        
+    </div>
+</body>
