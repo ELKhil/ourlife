@@ -1,28 +1,36 @@
 
 
-<body>
+<body *ngIf="session.isLogged">
     <div class="body1">
-        <div class="scroll-page">
-            <img src={{session.decodedToken}} alt="">
-        </div>
-    <ul *ngIf="session.isLogged" style="list-style-type:none; ">
-        <li>
-       {{session.decodedToken.username}}
-        </li>
-        <li> {{session.decodedToken.roles[0]}}</li>
-        <li>Date de création</li>
-        <li>Role</li>
-    </ul>
+            <div *ngIf="session.isLogged" class="scroll-page1">
+                <img [src]="session.decodedToken.imageProfil | toImage" alt="">
+            </div>
+            <div *ngIf="!session.isLogged" class="scroll-page1">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/OOjs_UI_icon_userAvatar.svg/1200px-OOjs_UI_icon_userAvatar.svg.png"alt="yo">
+            </div>
+
+            
+            <div class="scroll-page2">
+                <ul *ngIf="session.isLogged" style="list-style-type:none; ">
+                            <li style="color: rgb(6, 118, 6)">Connecté.e</li>
+                                <li>
+                            {{session.decodedToken.username}}
+                                </li>
+                                
+                                <li>{{session.decodedToken.role[0]}}</li>
+                </ul>
+                
+            </div>
+            
     </div>
+
+
+
     <div class="body2">
-        <h5>Info-2</h5>
-        <ul>
-            <li>image</li>
-            <li>Nom</li>
-            <li>Date de création</li>
-            <li>Role</li>
-        </ul>
+        <img src="../../assets/images/200.gif" alt="" width="100%">
     </div>
+
+
  
 </body>
 

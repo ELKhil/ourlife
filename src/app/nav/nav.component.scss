@@ -1,7 +1,7 @@
 .barNav{
     width: 100%;
     position: fixed;
-    z-index: 2;
+    z-index: 102;
 }
 
 #save{
@@ -25,7 +25,7 @@
 #home{
     border-radius: 50px; 
     background-color: rgb(98, 157, 158);
-     margin-right: 12px;
+    margin-right: 12px;
 }
 #home:hover{
     background-color: rgb(96, 203, 224);
@@ -36,6 +36,8 @@ h4{
      font-style: italic; 
      font-weight: bold; color: rgb(230, 201, 105);
      margin-right: 20px;
+     padding-top: 15px;
+     font-size: 35px;
 
     
 }

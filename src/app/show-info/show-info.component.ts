@@ -14,10 +14,6 @@ export class ShowInfoComponent implements OnInit {
 
 
   ngOnInit(): void {
-
-    
-    console.log("token");
-    console.log(this.session.decodedToken);
   }
 
 

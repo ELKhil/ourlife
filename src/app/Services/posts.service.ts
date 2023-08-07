@@ -21,20 +21,30 @@ export class PostsService {
       return this.httpClient.get<Iposts[]>(environment.api_url + '/posts');
     }
 
+
+    //c'est une requete qui cherche une page :
     getPage(pagination : number): Observable<Iposts[]>{
-      return this.httpClient.get<Iposts[]>(environment.api_url + '/posts?_page='+pagination+'&_limit=10');
+      return this.httpClient.get<Iposts[]>(environment.api_url + '/api/posts/'+pagination+'/4');
     }
+
+    //C'est une requete qui cherche tous les page d'un utilisateur
+    getPageUser(username : string) : Observable<Iposts[]>{
+      return this.httpClient.get<Iposts[]>(environment.api_url + '/api/posts/'+username);
+    }
+
+
+    //c'est une requete qui cherche toutes les postes:
+   /*  getAllPosts(): Observable<Iposts[]>{
+    return this.httpClient.get<Iposts[]>(environment.api_url + '/api/posts');
+    } */
   
     post(value : Iposts){
-      return this.httpClient.post<any>(environment.api_url + '/posts', value);
+      return this.httpClient.post<any>(environment.api_url + '/api/post', value);
     }
-
-
-  
-
-
-
-    //return last post from the array
+    
+    delet(postId : Number){
+      return this.httpClient.get<any>(environment.api_url + '/api/post/delet/' + postId);
+    }
 
    
 

@@ -28,22 +28,24 @@
   
               <!--  Message -->
               <div class="form-outline mb-5">
-                <textarea class="form-control"  placeholder="Quoi de neuf...?" rows="4" formControlName="contenu">
+                <label for="contenu" class="required">Message</label>
+                <textarea required class="form-control form-control-lg" id="contenu" placeholder="Quoi de neuf...?" rows="4" formControlName="contenu"> </textarea>
+                <div class="text-danger" *ngIf="postForm.get('contenu')?.errors?.['required'] && postForm.get('contenu')?.touched">Ce champ est requis</div>
 
-                </textarea>
+               
               </div>
               <!-- File -->
               <div class="form-outline mb-5"> 
                 <i class="fa fa-camera"></i>
-                <label class="form-label" for="media2">Image/vidéo</label>
-                <input type="file" id="media2"  (change)="onChange($event)" class="form-control form-control-lg"/>
+                <label class="form-label" for="media">Image/vidéo</label>
+                <input type="file" id="media" (change)="onChange($event)" class="form-control form-control-lg"/>
                
               </div>
               <!-- 2 column grid layout for inline styling -->
-              <div class="row mb-5">
+              <div *ngIf="fileDown" class="row mb-5">
                 <div class="col">
-              <label for="typeMedia2">Type de media</label>
-              <select class="form-control mt-2" required id="typeMedia2" formControlName="typeMedia2">
+              <label for="typemedia">Type de media</label>
+              <select class="form-control mt-2" id="typemedia" formControlName="typemedia">
                 <option [selected]="true" value="">Type de media</option>
                 <option  value="image">Image</option>
                 <option value="video">Video</option>

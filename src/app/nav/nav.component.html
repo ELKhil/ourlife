@@ -6,7 +6,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarText" style="margin-left: 200px;">
-        <a class="btn btn-sm" href="#" id="home"><i  class="fa fa-home"></i></a>
+        <a class="btn btn-sm" routerLink="posts" id="home"><i  class="fa fa-home"></i></a>
           <ul class="navbar-nav mr-auto" >
             
             <li class="nav-item active"style="align-self: center;">
@@ -19,7 +19,7 @@
             </li>
 
             <li class="nav-item" style="align-self: center;">
-              <a id="save"class="btn btn-sm" routerLink="register">S'enregistrer</a>
+              <a id="save"class="btn btn-sm" *ngIf="!session.isLogged" routerLink="register">S'enregistrer</a>
             </li>
         
           </ul>

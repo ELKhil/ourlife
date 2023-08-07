@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../Services/user.service'
 import { UserForm } from '../Models/UserForm';
 import { Router } from '@angular/router';
-import { FileCheck } from 'angular-file-validator';
 
+
+declare var toastr : any;
 
 
 
@@ -18,14 +19,14 @@ import { FileCheck } from 'angular-file-validator';
 
 export class RegisterComponent implements OnInit {
 
-  users! : UserForm [];
+  users : UserForm [] =[];
   fg! : FormGroup;
   inputClicked : boolean = false;
   fileSize : number = 0;
   fileType : string = "";
-
+  
   constructor(
-    private userService : UserService, private fb: FormBuilder, public _router: Router
+    private _userService : UserService, private fb: FormBuilder, public _router: Router
   ) { }
 
   ngOnInit(): void {
@@ -36,8 +37,8 @@ export class RegisterComponent implements OnInit {
       confirmMdp: [null, Validators.required],
 
       imageProfil: new FormControl(null, {
-        validators: [Validators.required, this.checkFileSize],
-        asyncValidators: [FileCheck.ngFileValidator(['png', 'jpeg','jpeg'])] // <-------
+      validators: [Validators.required, this.checkFileSize]
+         // <-------
       })
       
     }, {validators: this.checkPassword});
@@ -45,24 +46,27 @@ export class RegisterComponent implements OnInit {
     //this.userService.get().subscribe(data=>this.users = data);
   }
 
+ 
+
   submit(){
 
     if(this.fg.valid){
-  
-      this.userService.post(this.fg.value).subscribe(()=>{
-     /*  this.userService.get().subscribe(data => this.users = data); */
-   
+        
+        this._userService.post(this.fg.value).subscribe(()=>{
+        toastr.success("Vous etes bien enregistré.e");
+        this._userService.active = true;
+        this._router.navigateByUrl('');
      
     });
     }else{
-
+      toastr.error("L'inscription a échoué..")
       this.fg.markAllAsTouched();
     }
+
   }
   
   onChange($event: any) {
     let file = $event.target.files[0];
-
     //Récupérer la taille et le type de fichier
     this.fileSize = file.size;
     let reader = new FileReader();
@@ -101,8 +105,8 @@ export class RegisterComponent implements OnInit {
   }
   }
 
- 
- 
+
+  
 
 
 }

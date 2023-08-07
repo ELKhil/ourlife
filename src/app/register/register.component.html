@@ -12,7 +12,7 @@
                   <div class="form-outline mb-2">
                     <label class="required" for="nom">Nom</label>
                     <input type="text" id="nom" class="form-control form-control-lg" formControlName="nom" />
-                    <div class="text-danger" *ngIf="fg.get('nom')?.errors?.['required'] && fg.get('nom')?.touched">Le champ est requis</div>
+                    <div class="text-danger" *ngIf="fg.get('nom')?.errors?.['required'] && fg.get('nom')?.touched">Ce champ est requis</div>
                     <div class="text-danger" *ngIf="fg.get('nom')?.errors?.['maxlength']">La taille maximale est de 30 charactères</div>
                     <div class="text-danger" *ngIf="fg.get('nom')?.errors?.['minlength']">La taille minimale est de 2 charactères</div>
 
@@ -21,7 +21,7 @@
                   <div class="form-outline mb-2">
                     <label class="required" for="email">Nom d'utilisateur</label>
                     <input type="text" required  id="nomUtilisateur" class="form-control form-control-lg" formControlName="nomUtilisateur" />
-                    <div class="text-danger" *ngIf="fg.get('nomUtilisateur')?.errors?.['required'] && fg.get('nomUtilisateur')?.touched">Le champ est requis</div>
+                    <div class="text-danger" *ngIf="fg.get('nomUtilisateur')?.errors?.['required'] && fg.get('nomUtilisateur')?.touched">Ce champ est requis</div>
                    
 
                     
@@ -30,7 +30,7 @@
                   <div class="form-outline mb-2">
                     <label class="required" for="mdp">Mot de passe</label>
                     <input type="password" required  id="mdp" class="form-control form-control-lg" formControlName="mdp" />
-                    <div class="text-danger" *ngIf="fg.get('mdp')?.errors?.['required'] && fg.get('mdp')?.touched">Le champ est requis</div>
+                    <div class="text-danger" *ngIf="fg.get('mdp')?.errors?.['required'] && fg.get('mdp')?.touched">Ce champ est requis</div>
                     
                   </div>
   
@@ -57,7 +57,7 @@
                     <button  class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">S'enregistrer</button>
                   </div>
   
-                  <p class="text-center text-muted mt-2 mb-0">Avez-vous dèja un compte? <a href="login" class="fw-bold text-body"><u>Se connecter ici</u></a></p>
+                  <p class="text-center text-muted mt-2 mb-0">Avez-vous dèja un compte? <a href="/login" class="fw-bold text-body"><u>Se connecter ici</u></a></p>
   
                 </form>
   
